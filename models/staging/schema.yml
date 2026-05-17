@@ -1,0 +1,77 @@
+version: 2
+
+models:
+
+  # Main financial dataset - one row per authority per financial year
+  - name: stg_la_expenditure
+    columns:
+      - name: authority_code
+        tests:
+          - not_null
+      - name: authority_name
+        tests:
+          - not_null
+      - name: authority_class
+      - name: financial_year
+        tests:
+          - not_null
+      - name: net_exp_education
+      - name: net_exp_adult_social_care
+      - name: net_exp_housing
+      - name: net_exp_childrens_social_care
+      - name: net_exp_transport
+      - name: net_exp_total
+        tests:
+          - not_null
+
+  # ONS claimant count - February 2026 snapshot
+  - name: stg_claimant_count
+    columns:
+      - name: authority_code
+        tests:
+          - not_null
+          - unique
+      - name: authority_name
+        tests:
+          - not_null
+      - name: claimant_count
+        tests:
+          - not_null
+      - name: claimant_rate
+        tests:
+          - not_null
+
+  # DfE KS4 attainment - 2024-25 academic year
+  - name: stg_ks4_attainment
+    columns:
+      - name: authority_code
+        tests:
+          - not_null
+      - name: authority_name
+        tests:
+          - not_null
+      - name: academic_year
+        tests:
+          - not_null
+      - name: attainment8_avg
+      - name: pct_grade5_english_maths
+      - name: pct_entering_ebacc
+      - name: pct_grade5_ebacc
+
+  # IMD 2019 - static reference dimension
+  - name: stg_imd
+    columns:
+      - name: authority_code
+        tests:
+          - not_null
+          - unique
+      - name: authority_name
+        tests:
+          - not_null
+      - name: imd_average_score
+        tests:
+          - not_null
+      - name: imd_average_rank
+        tests:
+          - not_null
+      - name: imd_pct_lsoas_most_deprived
