@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: psah_raw
+    database: psah-dbt
+    schema: psah_raw
+    description: Raw public services data from UK open government sources
+    tables:
+      - name: la_revenue_expenditure
+        description: Local authority revenue expenditure outturn from MHCLG
+      - name: claimant_count
+        description: Monthly claimant count by local authority from ONS
+      - name: ks4_attainment
+        description: Key Stage 4 attainment results by local authority from DfE
+      - name: imd
+        description: Index of Multiple Deprivation scores at LA level
